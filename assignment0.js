@@ -49,15 +49,15 @@ class Shape
         //throw '"Shape.createVAO" not implemented'
 
         // TODO: Create a vertex attribute object (VAO) and store it in 'this.vertex_array_object'
-		this.vertex_array_object = gl.createVertexArray();
+	this.vertex_array_object = gl.createVertexArray();
         gl.bindVertexArray(this.vertex_array_object);
         // TODO: Bind the VBO and link it to the shader attribute 'a_position'
-		gl.bindBuffer(gl.ARRAY_BUFFER, this.vertices_buffer);
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.vertices_buffer);
         gl.enableVertexAttribArray(shader.a_position);
         // TODO: Set the correct vertex attrib pointer settings for your VBO, so that the vertex data is mapped correctly to 'a_position'
-		gl.vertexAttribPointer(shader.a_position, this.num_components, gl.FLOAT, false, 0, 0);
+	gl.vertexAttribPointer(shader.a_position, this.num_components, gl.FLOAT, false, 0, 0);
         // TODO: Unbind buffers and clean up
-		gl.bindVertexArray(null);
+	gl.bindVertexArray(null);
         gl.bindBuffer(gl.ARRAY_BUFFER, null);
     }
 
@@ -70,11 +70,11 @@ class Shape
         //throw '"Shape.createVBO" not implemented'
 
         // TODO: Create a vertex buffer (VBO) and store it in 'this.vertices_buffer'
-		this.vertices_buffer = gl.createBuffer();
+	this.vertices_buffer = gl.createBuffer();
         // TODO: Fill the buffer with data in 'this.vertices'
-		gl.bindBuffer(gl.ARRAY_BUFFER, this.vertices_buffer);
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.vertices_buffer);
         // TODO: Pay attention to the data type of the buffer and refer to the book
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW);
     }
 
     /**
@@ -86,11 +86,11 @@ class Shape
         //throw '"Shape.createIBO" not implemented'
 
         // TODO: Create an index buffer object (IBO) and store it in 'this.index_buffer'
-		this.index_buffer = gl.createBuffer();
+	this.index_buffer = gl.createBuffer();
         // TODO: Fill the buffer with data in 'this.indices'
-		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.index_buffer);
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.index_buffer);
         // TODO: Pay attention to the datatype of the buffer and refer to the book
-		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indices), gl.STATIC_DRAW);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indices), gl.STATIC_DRAW);
     }
 
     /**
@@ -109,16 +109,16 @@ class Shape
         //throw '"Shape.render" not implemented'
 
         // TODO: Bind vertex array object
-		gl.bindVertexArray(this.vertex_array_object);
+	gl.bindVertexArray(this.vertex_array_object);
         // TODO: Bind index buffer
-		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.index_buffer);
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.index_buffer);
         // TODO: Send uniform attributes for the shape's color using 'this.shader' and its function 'setUniform3f'
         // TODO: The color is stored in 'this.color' and needs to be passed to the uniform named 'u_color' in the shader
-		this.shader.setUniform3f("u_color", this.color);
+	this.shader.setUniform3f("u_color", this.color);
         // TODO: Draw the element
-		gl.drawElements(this.draw_mode, this.num_elements, gl.UNSIGNED_SHORT, 0);
+	gl.drawElements(this.draw_mode, this.num_elements, gl.UNSIGNED_SHORT, 0);
         // TODO: Clean Up
-		gl.bindVertexArray(null);
+	gl.bindVertexArray(null);
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
     }
 
@@ -181,9 +181,9 @@ class WebGlApp
     initGl( )
     {
         //throw '"WebGLApp.initGL" not implemented'
-		let canvas = document.getElementById("canvas");
+	let canvas = document.getElementById("canvas");
         // TODO: Get the canvas element and retrieve its webgl2 context 
-		let gl = canvas.getContext("webgl2");
+	let gl = canvas.getContext("webgl2");
         // TODO: Return the context
         return gl;
     }
@@ -200,7 +200,7 @@ class WebGlApp
         //throw '"WebGLApp.setViewport" not implemented'
 
         // TODO: Set the GL viewport to fill the full width and height of the canvas
-		gl.viewport(0, 0, width, height);
+	gl.viewport(0, 0, width, height);
     }
 
     /**
@@ -214,7 +214,7 @@ class WebGlApp
 
         // TODO: Clear the canvas with Aggie Blue (#022851) 
         // TODO: Check out the helper function 'hex2rgb'
-		const aggieBlue = hex2rgb("#022851");
+	const aggieBlue = hex2rgb("#022851");
         gl.clearColor(aggieBlue[0], aggieBlue[1], aggieBlue[2], 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
     }
@@ -232,8 +232,8 @@ class WebGlApp
         //throw '"WebGlApp.addTriangle" not implemented'
 
         const aggieGold = hex2rgb("#FFBF00");
-		let triangle = new Triangle(gl, shader, position, aggieGold, sideLength);
-		this.shapes.push(triangle);
+	let triangle = new Triangle(gl, shader, position, aggieGold, sideLength);
+	this.shapes.push(triangle);
     }
 
     /**
@@ -259,11 +259,11 @@ class WebGlApp
         //throw '"WebGlApp.render" not implemented'
 
         // TODO: Set the viewport to span the full 'canvas_width' and 'canvas_height' using the function you implemented above
-		this.setViewport(gl, canvas_width, canvas_height);
+	this.setViewport(gl, canvas_width, canvas_height);
         // TODO: Clear the active viewport with Aggie Blue using the function you implemented above
-		this.clearCanvas(gl);
+	this.clearCanvas(gl);
         // TODO: Loop through all shapes and render them using the Shape's render function
-		for (let shape of this.shapes) {
+	for (let shape of this.shapes) {
             shape.render(gl);
         }
     }
